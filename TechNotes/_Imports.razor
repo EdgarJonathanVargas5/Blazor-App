@@ -1,0 +1,27 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using TechNotes
+@using TechNotes.Components
+@using MediatR
+@using TechNotes.Domain.Notes
+@using TechNotes.Application.Notes.GetNotes
+@using TechNotes.Application.Notes
+@using Mapster
+@using TechNotes.Application.Notes.CreateNote
+@using TechNotes.Components.Pages
+@using TechNotes.Application.Notes.DeleteNote
+@using TechNotes.Application.Notes.GetNoteById
+@using TechNotes.Application.Notes.UpdateNote
+@using TechNotes.Features.Notes.Services
+@using TechNotes.Application.Users.RegisterUser
+@using TechNotes.Application.Users.LoginUser
+@using Microsoft.AspNetCore.Identity
+@using TechNotes.Infrastructure.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Authorization
