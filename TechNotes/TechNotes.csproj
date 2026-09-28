@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>209e7ae7-a6c7-44ee-b8ad-a3377fbc95ae</UserSecretsId>
   </PropertyGroup>
   
   <ItemGroup>
@@ -11,11 +12,16 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Features\Notes\Services\" />
     <Folder Include="Features\Users\" />
     <Folder Include="Features\Users\Components\" />
     <Folder Include="Pages\" />
     <Folder Include="Shared\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.20" />
   </ItemGroup>
 
 </Project>
