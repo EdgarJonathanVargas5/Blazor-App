@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TechNotes/TechNotes.csproj" />
+  <Project Path="TechNotes.Application/TechNotes.Application.csproj" />
+  <Project Path="TechNotes.Domain/TechNotes.Domain.csproj" />
+  <Project Path="TechNotes.Infrastructure/TechNotes.Infrastructure.csproj" />
+</Solution>
