@@ -1,7 +1,7 @@
 ﻿@page "/notes"
 @attribute [StreamRendering]
 @inject INoteColorService colorService;
-@inject ISender sender;
+@inject ISender Sender;
 
 <PageTitle>Notas</PageTitle>
 
@@ -19,13 +19,15 @@
                     <p class="text-sm text-gray-500 mt-1">Organiza tus ideas y pensamientos</p>
                 </div>
             </div>
-            <a href="/note-editor" 
-                    class="inline-flex items-center px-6 py-3  font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                </svg>
-                Nueva Nota
-            </a>
+            <AuthorizeView Roles="Admin, Writer">
+                <a href="/note-editor" 
+                        class="inline-flex items-center px-6 py-3  font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Nueva Nota
+                </a>
+            </AuthorizeView>
         </div>
     </div>
 </div>
@@ -58,18 +60,9 @@ else
                     
                     <div class="p-3 flex-1 flex flex-col">
                         <div class="flex items-start justify-between mb-3">
-                            <AuthorizeView>
-                                <Authorized>
-                                    <a href="/note-editor/@note.Id" class="text-3xl font-semibold text-gray-800 leading-tight line-clamp-2 flex-1 pr-2">
-                                        @note.Title
-                                    </a>
-                                </Authorized>
-                                <NotAuthorized>
-                                    <p class="text-3xl font-semibold text-gray-800 leading-tight line-clamp-2 flex-1 pr-2">
-                                        @note.Title
-                                    </p>
-                                </NotAuthorized>
-                            </AuthorizeView>
+                                <a href="/note-detail/@note.Id" class="text-3xl font-semibold text-gray-800 leading-tight line-clamp-2 flex-1 pr-2">
+                                    @note.Title
+                                </a>
                             @if (note.IsPublished)
                             {
                                 <div class="flex-shrink-0">
@@ -90,11 +83,27 @@ else
                         }
                     </div>
                     
-                    <div class="px-5 bg-white border-t-2 border-gray-300 shadow-inner h-16 flex items-center">
-                        <div class="flex flex-col items-center justify-between text-sm w-full">
-                            <p class="font-semibold text-gray-800 pt-2">@note.CreatedAt.ToString("dd MMM yyyy")</p>
-                            <p class="text-sm font-medium text-gray-600">@note.UserName</p>
+                    <!-- Pie de la nota -->
+                    <div class="px-4 py-3 bg-white border-t border-gray-200 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <p class="text-xs font-semibold text-gray-800">@note.CreatedAt.ToString("dd MMM yyyy")</p>
+                            <p class="text-xs text-gray-600">@note.UserName</p>
                         </div>
+
+                        <!-- Botón editar -->
+                        @if (note.CanEdit)
+                        {
+                            <a href="/note-editor/@note.Id"
+                                class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                                style="text-decoration: none;" onclick="event.stopPropagation()">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                                <span class="text-sm font-medium">Editar</span>
+                            </a>
+                        }
                     </div>
                 </div>
             }
@@ -107,7 +116,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(1000);
-        var result = await sender.Send(new GetNotesQuery());
+        var result = await Sender.Send(new GetNotesQuery());
         if(result is not null)
         {
             notes = result.IsSuccessful ? result : new List<NoteResponse>();    

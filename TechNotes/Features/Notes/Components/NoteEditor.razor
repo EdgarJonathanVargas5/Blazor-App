@@ -1,8 +1,10 @@
 ﻿@page "/note-editor"
 @page "/note-editor/{NoteId:int}"
 
+@attribute [Authorize(Roles = "Admin, Writer")]
 @inject ISender Sender
 @inject NavigationManager NavigationManager;
+@inject UserManager<User> UserManager;
 
 <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg">
@@ -137,6 +139,7 @@
     private NoteModel? Note { get; set; }
     [Parameter]
     public int? NoteId { get; set; }
+    private HttpContext HttpContext { get; set; } = default!;
     protected override async Task OnParametersSetAsync()
     {
         if (NoteId is not null)
@@ -182,6 +185,7 @@
             {
                 Note = result.Adapt<NoteModel>();
                 Console.WriteLine("Nota creada satistactoriamente");
+                NavigationManager.NavigateTo("/notes");
             }
             else
             {
