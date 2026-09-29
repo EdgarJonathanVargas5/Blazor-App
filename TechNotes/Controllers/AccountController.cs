@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TechNotes.Infrastructure.Authentication;
+using TechNotes.Infrastructure.Users;
 
 namespace TechNotes.Controllers;
 
@@ -54,6 +54,7 @@ public class AccountController : Controller
             EmailConfirmed = true,
         };
         await _userManager.CreateAsync(user);
+        await _userManager.AddToRoleAsync(user, "Reader");
         await _userManager.AddLoginAsync(user, info);
         await _signInManager.SignInAsync(user, isPersistent: false);
         return Redirect("/notes");
