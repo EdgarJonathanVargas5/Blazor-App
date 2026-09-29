@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using TechNotes.Domain.User;
-using TechNotes.Infrastructure.Authentication;
+using TechNotes.Infrastructure.Users;
 
 namespace TechNotes.Infrastructure.Repositories;
 
