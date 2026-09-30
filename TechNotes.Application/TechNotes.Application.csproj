@@ -21,9 +21,11 @@
     <Folder Include="Notes\GetNoteById\" />
     <Folder Include="Notes\GetNotes\" />
     <Folder Include="Notes\UpdateNote\" />
-    <Folder Include="Users\" />
+    <Folder Include="Users\GetUserRoles\" />
+    <Folder Include="Users\GetUsers\" />
     <Folder Include="Users\LoginUser\" />
     <Folder Include="Users\RegisterUser\" />
+    <Folder Include="Users\RemoveRoleFromUser\" />
   </ItemGroup>
 
   <ItemGroup>

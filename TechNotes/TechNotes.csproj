@@ -14,6 +14,8 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Features\Notes\Services\" />
+    <Folder Include="Features\UserManagement\" />
+    <Folder Include="Features\UserManagement\Components\" />
     <Folder Include="Features\Users\" />
     <Folder Include="Features\Users\Components\" />
     <Folder Include="Pages\" />
@@ -22,6 +24,7 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.21" />
   </ItemGroup>
 
 </Project>
