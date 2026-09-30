@@ -65,10 +65,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
 app.UseCookiePolicy();
+
 app.UseAntiforgery();
 
 app.MapControllers();
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
