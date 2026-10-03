@@ -8,11 +8,11 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\TechNotes.Client\TechNotes.Client.csproj" />
     <ProjectReference Include="..\TechNotes.Infrastructure\TechNotes.Infrastructure.csproj" />
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Features\Notes\Services\" />
     <Folder Include="Features\UserManagement\" />
     <Folder Include="Features\UserManagement\Components\" />
@@ -25,6 +25,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.21" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,10 @@ using TechNotes.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
+
 builder.Services.AddControllers();
 builder.Services.AddDataProtection().SetApplicationName("TechNotes");
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -51,9 +55,6 @@ builder.Services.AddAuthentication().AddGoogle(googleOptions =>
    googleOptions.Scope.Add("profile");
 });
 
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -73,6 +74,8 @@ app.UseAntiforgery();
 app.MapControllers();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(TechNotes.Client._Imports).Assembly);
 
 app.Run();
