@@ -57,4 +57,12 @@ public class NoteRepository : INoteRepository
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<List<Note>> GetAllNotesByUserAsync(string userId)
+    {
+        var notes = await _context.Notes
+                          .Where(n => n.UserId == userId)
+                          .ToListAsync();
+        return notes;
+    }
 }
