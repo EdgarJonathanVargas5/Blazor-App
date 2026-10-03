@@ -19,7 +19,9 @@
     <Folder Include="Notes\CreateNote\" />
     <Folder Include="Notes\DeleteNote\" />
     <Folder Include="Notes\GetNoteById\" />
+    <Folder Include="Notes\GetNotesByCurrentUser\" />
     <Folder Include="Notes\GetNotes\" />
+    <Folder Include="Notes\TogglePublishNote\" />
     <Folder Include="Notes\UpdateNote\" />
     <Folder Include="Users\GetUserRoles\" />
     <Folder Include="Users\GetUsers\" />
